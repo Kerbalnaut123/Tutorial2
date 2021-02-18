@@ -1,5 +1,9 @@
 {
   "resources": [
+    {"id":{"name":"Sprite_Ship","path":"sprites/Sprite_Ship/Sprite_Ship.yy",},"order":0,},
+    {"id":{"name":"Sprite_Asteroid_Medium","path":"sprites/Sprite_Asteroid_Medium/Sprite_Asteroid_Medium.yy",},"order":2,},
+    {"id":{"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"order":3,},
+    {"id":{"name":"Sprite_Asteroid_Small","path":"sprites/Sprite_Asteroid_Small/Sprite_Asteroid_Small.yy",},"order":1,},
     {"id":{"name":"room0","path":"rooms/room0/room0.yy",},"order":0,},
   ],
   "Options": [
