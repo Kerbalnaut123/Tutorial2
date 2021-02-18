@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 2 - Attacking and Collisions">
+				<option style="font-weight:bold;" value="page04.html">More Collisions</option>
+				<option value="page05.html">Debris</option>
+				<option value="page06.html">Clean Up</option>
+				<option value="page01.html">Collision Masks</option>
+				<option value="page02.html">Collisions</option>
+				<option value="page03.html">Shooting</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter3/page01.html">Chapter 3 - Score, Lives and Effects</option>
+				<option style="font-weight:bold;" value="../Chapter4/page01.html">Chapter 4 - Sound Effects and Polish</option>
+				<option style="font-weight:bold;" value="../Chapter1/page01.html">Chapter 1 - Getting Started</option>
+		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+We need our bullets to destroy the asteroids, so to do that we need to open the object "<tt>obj_bullet</tt>" (if it's not already open) and add a <b>Collision Event</b> to it with the object "<tt>obj_asteroid</tt>":
+
+<p>
+<img class="center" src="../Images/C3_04_01_CollisionBullet.png" alt="Adding A Collision With A Bullet">
+
+<p>
+The first thing we're going to do in this event is tell the bullet to destroy itself using the <a href="gms2tutorials:///ShowHelp?tag=action_destroy_instance"><tt>Destroy Instance</tt></a> action from the <b>Instances</b> section of the Toolbox:
+
+<p>
+<img class="center" src="../Images/DND_C3_02_01_Destroy.png" alt="Destroy The Instance">
+
+<p>
+
+<p>
+You might think that this will prevent any further actions from running after the function is called, but in <i>GameMaker Studio 2</i> destroying an instance doesn't happen until the <i>end</i> of the event, so although we've called this function, it doesn't exit the event and the instance won't actually be removed from the room until the collision event is resolved.
+
+<p>
+What other actions do we need? Well, we want the bullet to destroy the asteroids it hits, and we also want it to "split" the bigger asteroids into smaller ones. To do this we need to be able to access the asteroid that is being detected as colliding with the bullet, and for that we'll use the <a href="gms2tutorials:///ShowHelp?tag=action_apply_to"><tt>Apply To</tt></a> action, found in the <b>Common</b> section of the toolbox, so drag that in after the <tt>Destroy Instance</tt> action:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_01_AddAction.gif" alt="Add Applies To Action">
+
+<p>
+What this action does is tell <i>GameMaker Studio 2</i> that any DnD&trade; actions added to it, will be applied to (run on) an instance or group of instances, and <i>not</i> the instance that actually contains the DnD&trade;. In this case we are going to apply some code to the "<tt>other</tt>" instance in the collision. If you click on the drop-down arrow it will open up the <b>Asset Explorer</b> and on the left you can see a list of <b>keywords</b> to select from, one of which is "<tt>other</tt>". Select that now:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_02_OpenAssetExplorer.gif" alt="Open The Asset Explorer">
+
+<p>
+The <tt>other</tt> <a href="gms2tutorials:///ShowHelp?tag=keywords">keyword</a>, when used in the collision event like this, will reference the "other" instance in the collision, so in our game, the bullet is colliding with an asteroid and "<tt>other</tt>" will reference the unique ID of the asteroid, and the DnD&trade; - although in the bullet object - will be run as if it was in the asteroid object. 
+
+<p>
+Now we need to add some DnD&trade;to have the asteroid destroy itself, so we fill in the actions like this:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_03_AddToApply.gif" alt="Add An Action To The Apply To Block">
+
+<p>
+<b>IMPORTANT!</b> Actions that you want to be added to the <tt>Apply To</tt> chain should be dropped to the <i>right</i> of the action, and not underneath. By adding them to the right (as shown in the image above) you are telling <i>GameMaker Studio 2</i> that the actions should be run on a different instance, while if you place the actions below, you are telling <i>GameMaker Studio 2</i> to run them <i>after</i> anything chained to the <tt>Apply To</tt> block.
+
+<p>
+Now, because we changed the <b>scope</b> of the code to the "other" instance in the collision (the asteroid instance) using <tt>Apply To</tt>, the <tt>Destroy Instance</tt> action will destroy the asteroid that the bullet is colliding with. We also want to "split" the asteroid based on what size the sprite is, so for that we'll be creating a chain of actions using:
+
+<p>
+<ul>
+	<li><a href="gms2tutorials:///ShowHelp?tag=action_if_variable"><tt>If Variable</tt></a> - to check what value the <tt>sprite_index</tt> has.
+	<li><a href="gms2tutorials:///ShowHelp?tag=action_repeat"><tt>Repeat</tt></a> - to create a loop that will create 2 asteroids.
+	<li><a href="gms2tutorials:///ShowHelp?tag=action_create_instance"><tt>Create Instance</tt></a> - to create the asteroids.
+	<li><a href="gms2tutorials:///ShowHelp?tag=action_create_variable"><tt>Assign Variable</tt></a> - to set the new sprite on the asteroids created. You'll remember that we set the asteroid sprite to a random sprite in the <b>Create Event</b> of the object, and here we'll overwrite it with a different value. This works because the moment an instance is created, its create event is run and <i>then</i> the actions continue in the event that created the instance.
+</ul>
+
+<p>
+Put together in the DnD&trade; Editor, it will look like this:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_05_CreateAsteroids.png" alt="Create Two Asteroids And Set Their Sprite">
+
+<p>
+Don't forget to drop actions to the sides of the <tt>If Variable</tt> and <tt>Repeat</tt> actions to chain them correctly!
+
+<p>
+The next check will be for the medium asteroid sprite, so click <img style="vertical-align:middle" src="../Icon_LMB.png"> on the <tt>If Variable</tt> to select it, and then use <img style="vertical-align:middle" src="../Icon_RMB.png"> to open the action menu and select <i>Copy</i>. Now, use the <img style="vertical-align:middle" src="../Icon_RMB.png"> again and select <i>Paste</i>:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_06_CopyActions.gif" alt="Copy Previous Actions">
+
+<p>
+You need to make the appropriate changes to these actions, first changing the sprite being checked for to the medium sprite:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_07_ChangeSprite.png" alt="Change The Next Sprite Index">
+
+<p>
+Then change the <tt>sprite_index</tt> of the asteroids being created:
+
+<p>
+<img class="center" src="../Images/DND_C3_04_08_AssignSprite.png" alt="Assign The New Asteroid Sprite Index">
+
+<p>
+
+
+<p>
+We could add another <tt>If Variable</tt> after that to check for a small asteroid sprite, but instead we'll do something slightly different...
+
+<p>
+Click the "Next" button to continue...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page03.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="page05.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>

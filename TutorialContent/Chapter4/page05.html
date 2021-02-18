@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 4 - Sound Effects and Polish">
+				<option style="font-weight:bold;" value="page05.html">Final Touches</option>
+				<option value="page06.html">Summary</option>
+				<option value="page01.html">Game Start</option>
+				<option value="page02.html">Spawning More Asteroids</option>
+				<option value="page03.html">Adding Sounds</option>
+				<option value="page04.html">Playing Sounds</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter1/page01.html">Chapter 1 - Getting Started</option>
+				<option style="font-weight:bold;" value="../Chapter2/page01.html">Chapter 2 - Attacking and Collisions</option>
+				<option style="font-weight:bold;" value="../Chapter3/page01.html">Chapter 3 - Score, Lives and Effects</option>
+		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+Before we can call the game finished, there is one loose end that we need to fix up. Currently, when the player dies, a life is removed and nothing else happens. What we really want to happen is to have the room start again so the player can keep playing until the 3 lives are lost and the game ends. To achieve this we need to add another <b>Alarm Event</b> into the object "<tt>obj_game</tt>", and in that we'll restart the room, so that when the player dies there is a short pause, and then they can start to play again with a life less.
+
+<p>
+Open the object "<tt>obj_ship</tt>" now, and add an <b>Alarm 1</b> event to it:
+
+<p>
+<img class="center" src="../Images/C5_04_01_Alarm1Event.png" alt="Add Alarm 1 To Object">
+
+<p>
+In this event we simply want to call the following action:
+
+<p>
+<img class="center" src="../Images/DND_C5_05_01_RestartRoom.png" alt="Restart The Room">
+
+<p>
+The <a href="gms2tutorials:///ShowHelp?tag=action_restart_room"><tt>Restart Room</tt></a> action does just what it says and restarts the room as if it had never been entered, so the player and asteroids are all created again and the player can keep playing.
+
+<p>
+To set this alarm, we need to open the object "<tt>obj_ship</tt>" again, and in the collision event with the object "<tt>obj_asteroid</tt>" add the following actions:
+
+<p>
+<img class="center" src="../Images/DND_C5_05_02_SetAlarm.png" alt="Set The Restart Room Alarm">
+
+<p>
+The last thing we are going to do is fix the music so it restarts when the room restarts too. As we have it now, we'll be playing the song <i>again</i> when the room is restarted, so we'll have two, out of sync, versions of the song playing (test it and see!). This is because sounds will not stop playing when a room is changed or restarted, so you must explicitly tell <i>GameMaker Studio 2</i> to stop a sound if you don't want to hear it after a restart or change. To have our music restart and only place once, we need to open the <b>Room Start Event</b> of the object "<tt>obj_game</tt>", and add the following in just before the call to <tt>Play Audio</tt>:
+
+<p>
+<img class="center" src="../Images/DND_C5_05_03_StopSound.png" alt="Stop Music On Restart">
+
+<p>
+All we're doing is checking to see if the sound "<tt>msc_song</tt>" is playing using the action <a href="gms2tutorials:///ShowHelp?tag=action_if_audio_playing"><tt>If Audio Is Playing...</tt></a>, and if it is then we stop it using <a href="gms2tutorials:///ShowHelp?tag=action_stop_audio"><tt>Stop Audio</tt></a> (the next line will restart it again).
+
+<p>
+Click the "Next" button to see how to continue...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page04.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="page06.html#LastPage" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>

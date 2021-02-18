@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 4 - Sound Effects and Polish">
+				<option style="font-weight:bold;" value="page01.html">Game Start</option>
+				<option value="page02.html">Spawning More Asteroids</option>
+				<option value="page03.html">Adding Sounds</option>
+				<option value="page04.html">Playing Sounds</option>
+				<option value="page05.html">Final Touches</option>
+				<option value="page06.html">Summary</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter1/page01.html">Chapter 1 - Getting Started</option>
+				<option style="font-weight:bold;" value="../Chapter2/page01.html">Chapter 2 - Attacking and Collisions</option>
+				<option style="font-weight:bold;" value="../Chapter3/page01.html">Chapter 3 - Score, Lives and Effects</option>
+		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+In this final chapter we're going to be looking at making the game a bit more polished and interesting for the player.
+
+<div class="note">
+	<b>NOTE:</b> If you have problems seeing the images in this tutorial, you can expand the tutorial window by dragging the edge into the IDE.<br><br>
+	<b>NOTE:</b> If you close the accompanying video then you can get it back by clicking <a href='gms2tutorials:///SetVideoPosition?index=4'>here</a>
+	<b>NOTE:</b> Some action chains in this chapter will be <b>collapsed</b> to save space - this simply hides the contents of the action and is done to keep the images smaller and clearer:
+	
+	<img class="center" src="../Images/C4_01_06_ExpandActions.gif" alt="Expand And Collapse Action Nodes">
+
+</div>
+
+<p>
+To start with, we're going to change how the asteroids are created, so open the room "<tt>rm_game</tt>" and remove all the instances of the object "<tt>obj_asteroid</tt>":
+
+<p>
+<img class="center" src="../Images/C5_01_01_RemoveRocks.gif" alt="Remove Asteroids From Game Room">
+
+<p>
+You can remove an instance by clicking <img style="vertical-align:middle" src="../Icon_LMB.png"> on it to select it and then using the <img style="vertical-align:middle" src="../Icon_Delete.png"> key.
+
+<p>
+With that done, we go back to our controller "<tt>obj_game</tt>" and add a <b>Room Start</b> event:
+
+<p>
+<img class="center" src="../Images/C5_01_02_RoomStart.png" alt="Room Start Event">
+
+<p>
+This event will be run at the start of every room, so our persistent object will trigger this event each time a new room is entered. In this event we're going to first check that the room is the game room, as we don't want to spawn asteroids anywhere else, and then we're going to add a <a href="gms2tutorials:///ShowHelp?tag=action_repeat"><tt>Repeat</tt></a> so that all the following actions will run 6 times and create 6 asteroids. We don't want the asteroids to spawn near the player, so we will get a random X and Y position for the corners of the room using a combination of <a href="gms2tutorials:///ShowHelp?tag=action_choose"><tt>Choose</tt></a> (from the <b>Random</b> section of the Toolbox) along with an <a href="gms2tutorials:///ShowHelp?tag=action_if_variable"><tt>If Variable...</tt></a> check, before finally creating the instances.
+
+<p>
+<img class="center" src="../Images/C5_01_03_Corners.png" alt="Asteroids Spawning In Corners">
+
+<p>
+To start with add an <tt>If Variable...</tt> check for the room "<tt>rm_game</tt>" and the <tt>Repeat</tt>:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_01_CheckRoom.png" alt="Check We Are In The Game Room">
+
+<p>
+Then add the <tt>Choose</tt> action, which will choose either of the two values 0 or 1, assigning the choice to a temporary local variable:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_02_Choose.png" alt="Choose Between Two Values">
+
+<p>
+We'll now check the choice value using an <tt>If... Else...</tt>, such that if it is 0 we will generate an X value in the first third of the room, and if it is 1 we will generate an X value in the last third of the room. This X value will be stored in the temporary local variable <tt>xx</tt>:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_03_GetXPos.png" alt="Get A Random X Position">
+
+<p>
+To get the Y position, we'll just repeat the same code, so you can copy and paste the <tt>Choose</tt> and the <tt>If... Else...</tt> DnD&trade;, and then edit it to look like this:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_04_GetYPos.png" alt="Get A Random X Position">
+
+<p>
+The final thing we need is to spawn the asteroids, so add a <a href="gms2tutorials:///ShowHelp?tag=action_create_instance"><tt>Create Instance</tt></a> action using the local variables for the X/Y position of the asteroid object:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_06_CreateAsteroid.png" alt="Create An Asteroid">
+
+<p>
+The full chain of the actions should look something like this:
+
+<p>
+<img class="center" src="../Images/DND_C5_01_05_RoomStartEvent.png" alt="All Actions In The Room Start Event">
+
+<p>
+This gives the player the best possible starting circumstances as there will be no asteroids created near them.
+
+
+
+<p>
+Click "Next" to continue...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="../Chapter4/page06.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="page02.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 1 - Setup And Moving">
+				<option style="font-weight:bold;" value="page06.html">Moving</option>
+				<option value="page07.html">Wrap The Room</option>
+				<option value="page08.html">Asteroids</option>
+				<option value="page01.html">What We Need</option>
+				<option value="page02.html">Making Sprites</option>
+				<option value="page03.html">Making Objects</option>
+				<option value="page04.html">Editing Rooms</option>
+				<option value="page05.html">Game Logic</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter2/page01.html">Chapter 2 - Attacking and Collisions</option>
+				<option style="font-weight:bold;" value="../Chapter3/page01.html">Chapter 3 - Score, Lives and Effects</option>
+				<option style="font-weight:bold;" value="../Chapter4/page01.html">Chapter 4 - Sound Effects and Polish</option>
+		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+Our player ship can turn left and right, but it's not able to move yet - let's fix that now! To start with, go back to the object <tt>obj_ship</tt>, and add a new <b>Keyboard Down</b> event the <b>Up</b> arrow key:
+
+<p>
+<img class="center" src="../Images/C2_06_02_UpArrowKey.png" alt="The Up Arrow Keyboard Down Event">
+
+<p>
+In this event we actually need to use a bit of GML, as there is no corresponding action for the functionality that we want. We could chain together a large DnD&tm; solution using the maths actions, but why complicate things when<i>GameMaker Studio 2</i> already has a GML function we can use? To add a function into a DnD&trade; action chain, simply select the <b>Common</b> toolbox section and then drag a copy of the action <tt>Function Call</tt> into the workspace.
+
+<p>
+Once you have the action, set its values like this (you can click the (+) icon of the action to add more arguments):
+
+<p>
+<img class="center" src="../Images/DND_C2_06_01_MotionAdd.png" alt="Using A GML Function">
+
+<p>
+So, what does the <a href="gms2tutorials:///ShowHelp?tag=motion_add"><tt>motion_add()</tt></a> do? Well, we're going to use it to set the <a href="gms2tutorials:///ShowHelp?tag=action_set_speed"><tt>speed</tt></a> and <a href="gms2tutorials:///ShowHelp?tag=action_set_direction_fixed"><tt>direction</tt></a> of the instance. The "speed" of an instance in <i>GameMaker Studio 2</i> is the number of pixels the instance should move each step of the game, so setting <tt>speed = 2;</tt> means that the instance will move 2 pixels every step of the game. However, speed means nothing without a direction, and so we also have the <tt>direction</tt> variable to set the direction of movement when speed is anything other than 0. Together these create a <i>vector</i>.
+
+<p>
+Now, explaining vector maths is outside of the scope of this tutorial, but luckily there's no need as <i>GameMaker Studio 2</i> has functions that will help you , without having any advanced mathematical knowledge. In this case it's the <a href="gms2tutorials:///ShowHelp?tag=motion_add"><tt>motion_add()</tt></a> function. This function takes an angle of direction, and then adds a certain amount of momentum to the speed of the instance in that direction - in the above code we are using the current <tt>image_angle</tt> (which we set in the left/right keyboard down events) to get the direction of motion and setting the amount of momentum to add as 0.05 pixels per step. This might seem a small amount, but adding to the ship momentum is a <i>cumulative</i> effect, so each step that we add this value, the ship will get faster and faster (in the same direction). We use this method over setting the <tt>x</tt>/<tt>y</tt> position directly, as it enables us to easily create a "floaty" feel for the movement, perfect for a game set in space!
+
+<div class="note">
+	<b>NOTE</b>: The values given here for adding to the <tt>image_angle</tt> or momentum, are just for orientation, but you can (and should!) play around with the values to see what happens and to maybe find something that you feel more appropriate.
+</div>
+
+<p>
+With that done, you can test the game again, and you should be able to move the ship around by tapping or holding the Up Arrow key, and if you rotate then the direction of movement should change over time too.
+
+<p>
+Click on the "Next" button to continue...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page05.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="page07.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>

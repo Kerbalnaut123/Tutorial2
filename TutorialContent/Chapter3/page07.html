@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 3 - Score, Lives and Effects">
+				<option style="font-weight:bold;" value="page07.html">Game Control</option>
+				<option value="page01.html">Controller Objects</option>
+				<option value="page02.html">Fonts</option>
+				<option value="page03.html">Setting Score and Lives</option>
+				<option value="page04.html">Rooms</option>
+				<option value="page05.html">Room Text 1</option>
+				<option value="page06.html">Room Text 2</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter4/page01.html">Chapter 4 - Sound Effects and Polish</option>
+				<option style="font-weight:bold;" value="../Chapter1/page01.html">Chapter 1 - Getting Started</option>
+				<option style="font-weight:bold;" value="../Chapter2/page01.html">Chapter 2 - Attacking and Collisions</option>		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+Most of the text we've just added can't be seen, as we haven't actually added any DnD&trade; to change between the different rooms. We'll do that now, by adding in a method to detect the press of the <img style="vertical-align:middle" src="../Icon_Enter.png"> key to start/restart the game, depending on the room the player is in.
+
+<p>
+To start with, in the object "<tt>obj_game</tt>", add a <b>Keyboard Pressed Event</b> for the <b>Enter</b> key:
+
+<p>
+<img class="center" src="../Images/C4_06_03_EnterKey.png" alt="The Keyboard Check Pressed Enter Key Event">
+
+<p>
+This event will check for the <img style="vertical-align:middle" src="../Icon_Enter.png"> keypress. When a press is detected we want to run a <tt>Switch</tt> on the <tt>room</tt> variable to see what action should be taken, so add a <a href="gms2tutorials:///ShowHelp?tag=action_switch"><tt>Switch</tt></a> now, like this:
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_01_Switch.png" alt="Add A Switch">
+
+<p>
+Now we'll add a <a href="gms2tutorials:///ShowHelp?tag=action_case"><tt>Case</tt></a> for the room "<tt>rm_start</tt>", followed by the <a href="gms2tutorials:///ShowHelp?tag=action_go_to_room"><tt>Go To Room</tt></a> from the <b>Rooms</b> section of the toolbox. This tells <i>GameMaker Studio 2</i> that we should go to the room "<tt>rm_game</tt>" if we are in the room "<tt>rm_start</tt>":
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_02_StartCase.png" alt="The Start Room Case">
+
+<p>
+The next <tt>Case</tt> to add is the one for the room "<tt>rm_gameover</tt>", and in this one we'll add the <a href="gms2tutorials:///ShowHelp?tag=action_restart_game"><tt>Restart Game</tt></a> action, as we want the game to start again after the player dies:
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_03_GameOverCase.png" alt="The Game Over Room Case">
+
+<p>
+You can copy this <tt>Case</tt> and paste it in again, then change the constant to "<tt>rm_win</tt>", so that the full switch will look like this:
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_04_AllCases.png" alt="All The Enter Key Press Cases">
+
+<p>
+We want to add in some more DnD&trade; now to detect the "win" and "lose" conditions, which in the case of our game is going to be getting 1000 points for the score to win, or 0 lives to lose. So, we'll want to first check that the current room is the game room (we don't want to perform these checks in any other room), and then we want to check the <tt>lives</tt> and <tt>score</tt> variables. This requires us to add a <b>Step Event</b> into the controller object:
+
+<p>
+<img class="center" src="../Images/C2_07_02_StepEvent.png" alt="Add A Step Event">
+
+<p>
+In this event we are first going to use the <a href="gms2tutorials:///ShowHelp?tag=action_if_variable"><tt>If Variable...</tt></a> action to check if the current room is the game room, and if it is, we're going to check the two variables, <tt>score</tt> and <tt>lives</tt> to see if the score is greater than (or equal to) 1000 or the lives are less than (or equal to) 0. For that we'll use the following DnD&trade; which you should add as shown:
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_05_CheckScore.png" alt="Check The Score And Lives Variables">
+
+<p>
+Here we are using the <a href="gms2tutorials:///ShowHelp?tag=action_if_score"><tt>If Score...</tt></a> and <a href="gms2tutorials:///ShowHelp?tag=action_if_lives"><tt>If Lives...</tt></a> actions to check the two variable values and then go to the appropriate room as required, but only in the main game room.
+
+<p>
+To test this you could always just play the game for a while and try to get the win and lose states, but there is an easier way. Open up the <b>Create Event</b> of the object "<tt>obj_game</tt>" and change the initial score and laves values to 990 and 1 respectively - the event actions should look like this:
+
+<p>
+<img class="center" src="../Images/DnD_C4_07_06_Test.png" alt="Change The Initial Values For Testing">
+
+<p>
+And now if we test the game we will get the "Win" and "Game Over" screens depending on whether we shoot an asteroid or crash into it:
+
+<p>
+<img class="center" src="../Images/C4_06_02_GameStates.gif" alt="Game States">
+
+<p>
+Click the "Next" button to continue on to the last chapter, where we'll add some polish to the overall gameplay...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page06.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="../Chapter4/page01.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>

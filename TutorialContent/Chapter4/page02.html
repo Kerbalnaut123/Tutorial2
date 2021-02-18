@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GameMaker Tutorial</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				//alert(newPage.value);
+				window.location.replace(newPage.value);
+				}
+		</script>
+	</head>
+<body>
+
+<h2>Tutorial - Space Rocks</h2>
+	<div class="head">
+		<select id="page-select" onChange="changePage()">
+			<optgroup label="Chapter 4 - Sound Effects and Polish">
+				<option style="font-weight:bold;" value="page02.html">Spawning More Asteroids</option>
+				<option value="page03.html">Adding Sounds</option>
+				<option value="page04.html">Playing Sounds</option>
+				<option value="page05.html">Final Touches</option>
+				<option value="page06.html">Summary</option>
+				<option value="page01.html">Game Start</option>
+			</optgroup>
+				<option style="font-weight:bold;" value="../index.html">Introduction</option>
+				<option style="font-weight:bold;" value="../Chapter1/page01.html">Chapter 1 - Getting Started</option>
+				<option style="font-weight:bold;" value="../Chapter2/page01.html">Chapter 2 - Attacking and Collisions</option>
+				<option style="font-weight:bold;" value="../Chapter3/page01.html">Chapter 3 - Score, Lives and Effects</option>
+		  </optgroup>
+		</select>
+	</div>
+<!--<h5 style="color: #ffffff; text-align:left; font-size:1em;">Starting A New Project</h5>-->
+<div class="body-scroll">
+
+<p>
+We now need to continue to create asteroids as the player progresses and destroys them, otherwise there'll quickly be no asteroids left for them to shoot at, so we'll use the <a href="gms2tutorials:///ShowHelp?tag=action_set_alarm"><tt>Set Alarm Countdown</tt></a> action to trigger an <b>Alarm Event</b>, and in that we'll spawn more asteroids. An alarm is an event that will be triggered some time after it is set, and we'll set it to 60 so that an asteroid will spawn every second in the game.
+
+<p>
+So, before we leave the <b>Room Start</b> event of the object "<tt>obj_game</tt>", you want to add in one further action to set the <b>Alarm 0 Event</b>, positioned as shown in the image below:
+
+<p>
+<img class="center" src="../Images/DND_C5_02_01_SetAlarm.png" alt="Set An Alarm">
+
+<p>
+With that done, we can add the <b>Alarm 0 Event</b> to the object now:
+
+<p>
+<img class="center" src="../Images/C5_01_04_Alarm0Event.png" alt="The Alarm[0] Event">
+
+<p>
+In this event, we're going to spawn the asteroids not in the corner of the room, but at the boundaries of the room. This will make it a lot less obvious to the player when they are created. For this to work we need to choose either a random position along the x-axis and a value for Y of either 0 or the room height, or a value of either 0 or the room width for X and a random value along the y-axis. The following actions do just that, so add them into the <b>Alarm 0</b> event as shown:
+
+<p>
+<img class="center" src="../Images/DND_C5_02_02_AlarmEvent.png" alt="The Alarm 0 Event Action Chain">
+
+<p>
+We also need to add in the DnD&trade; to spawn the asteroid and also to <i>reset</i> the alarm so that it will loop and continually create asteroids:
+
+<p>
+<img class="center" src="../Images/DND_C5_02_03_CreateAsteroids.png" alt="Create Asteroids And Reset the Alarm">
+
+<p>
+To set the alarm we have used the <a href="gms2tutorials:///ShowHelp?tag=room_speed"><tt>room_speed</tt></a> global variable. This variable holds the number of steps the room will perform in a second (the game speed), which is what we set right at the start of this tutorial: 60FPS. So, by setting the alarm to 4 * <tt>room_speed</tt> we are setting it to trigger again in 4 seconds.
+
+<p>
+There is one problem with this event, however... Because the object "<tt>obj_game</tt>" is persistent and the alarm is always reset, we would end up with asteroids in rooms other than the game room, since the alarm will be running even after the player has won or lost. To avoid this, add these following actions at the <i>start</i> of the chain, before the actions shown above:
+
+<p>
+<img class="center" src="../Images/DND_C5_02_04_ExitEvent.png" alt="Exit the Alarm Event">
+
+<p>
+Ticking the "<tt>Not</tt>" flag in the above action is checking to see if something is <b>not</b> equal to the given value, so these actions are checking if the current room is <b>not</b> the game room, then the rest of the event will be skipped (the <a href="gms2tutorials:///ShowHelp?tag=action_exit"><tt>Exit</tt></a> action will end the event that it is called in immediately, so any code after it will not be run).
+
+<p>
+If you run the game now and wait a few seconds you should see that asteroids are spawning constantly around the room edges.
+
+<p>
+Click the "Next" button to continue...
+
+
+<p>
+<br>
+</p>
+<p>
+  </div>
+
+  <div class="footer">
+    <div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page01.html"  class="prev">
+				<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right">
+				<a href="page03.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>
+    </div>
+    <h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+  </div>
+
+</body>
+</html>
