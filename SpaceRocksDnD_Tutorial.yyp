@@ -2,9 +2,11 @@
   "resources": [
     {"id":{"name":"Sprite_Ship","path":"sprites/Sprite_Ship/Sprite_Ship.yy",},"order":0,},
     {"id":{"name":"Sprite_Asteroid_Medium","path":"sprites/Sprite_Asteroid_Medium/Sprite_Asteroid_Medium.yy",},"order":2,},
+    {"id":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"order":0,},
     {"id":{"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"order":3,},
+    {"id":{"name":"Object_Asteroid","path":"objects/Object_Asteroid/Object_Asteroid.yy",},"order":1,},
     {"id":{"name":"Sprite_Asteroid_Small","path":"sprites/Sprite_Asteroid_Small/Sprite_Asteroid_Small.yy",},"order":1,},
-    {"id":{"name":"room0","path":"rooms/room0/room0.yy",},"order":0,},
+    {"id":{"name":"Room_Game","path":"rooms/Room_Game/Room_Game.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
@@ -20,7 +22,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"room0","path":"rooms/room0/room0.yy",},},
+    {"roomId":{"name":"Room_Game","path":"rooms/Room_Game/Room_Game.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Rooms.yy","order":11,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
