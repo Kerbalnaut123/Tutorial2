@@ -1,11 +1,15 @@
 {
   "resources": [
+    {"id":{"name":"Sprite_Bullet","path":"sprites/Sprite_Bullet/Sprite_Bullet.yy",},"order":4,},
     {"id":{"name":"Sprite_Ship","path":"sprites/Sprite_Ship/Sprite_Ship.yy",},"order":0,},
+    {"id":{"name":"Object_Debris","path":"objects/Object_Debris/Object_Debris.yy",},"order":3,},
     {"id":{"name":"Sprite_Asteroid_Medium","path":"sprites/Sprite_Asteroid_Medium/Sprite_Asteroid_Medium.yy",},"order":2,},
+    {"id":{"name":"Sprite_Debris","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"order":5,},
     {"id":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"order":0,},
     {"id":{"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"order":3,},
     {"id":{"name":"Object_Asteroid","path":"objects/Object_Asteroid/Object_Asteroid.yy",},"order":1,},
     {"id":{"name":"Sprite_Asteroid_Small","path":"sprites/Sprite_Asteroid_Small/Sprite_Asteroid_Small.yy",},"order":1,},
+    {"id":{"name":"Object_Bullet","path":"objects/Object_Bullet/Object_Bullet.yy",},"order":2,},
     {"id":{"name":"Room_Game","path":"rooms/Room_Game/Room_Game.yy",},"order":0,},
   ],
   "Options": [

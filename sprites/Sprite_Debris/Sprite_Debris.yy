@@ -1,6 +1,6 @@
 {
   "bboxMode": 0,
-  "collisionKind": 2,
+  "collisionKind": 1,
   "type": 0,
   "origin": 0,
   "preMultiplyAlpha": false,
@@ -8,14 +8,14 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 63,
+  "bbox_right": 0,
   "bbox_top": 0,
-  "bbox_bottom": 63,
+  "bbox_bottom": 0,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 64,
-  "height": 64,
+  "width": 1,
+  "height": 1,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"09bb16e3-810c-4179-aa62-b2d5adba6512","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"09bb16e3-810c-4179-aa62-b2d5adba6512","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"LayerId":{"name":"519ccbf0-a3d4-42f2-bef1-4b08ca66da92","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"resourceVersion":"1.0","name":"09bb16e3-810c-4179-aa62-b2d5adba6512","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"ac03bfba-23bd-4442-a268-56dc4dce4513","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"ac03bfba-23bd-4442-a268-56dc4dce4513","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"LayerId":{"name":"1975e925-ef5e-405d-b0db-2cf43ac147ce","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"Sprite_Debris","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"resourceVersion":"1.0","name":"ac03bfba-23bd-4442-a268-56dc4dce4513","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},
+    "spriteId": {"name":"Sprite_Debris","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"772e54bc-bc02-424e-959d-bf314b0e9fd7","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"09bb16e3-810c-4179-aa62-b2d5adba6512","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"0be07d3a-948d-454d-9a37-fcf5e7073eb0","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ac03bfba-23bd-4442-a268-56dc4dce4513","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -58,21 +58,21 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"Sprite_Asteroid_Large","path":"sprites/Sprite_Asteroid_Large/Sprite_Asteroid_Large.yy",},
+    "parent": {"name":"Sprite_Debris","path":"sprites/Sprite_Debris/Sprite_Debris.yy",},
     "resourceVersion": "1.3",
-    "name": "Sprite_Asteroid_Large",
+    "name": "Sprite_Debris",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"519ccbf0-a3d4-42f2-bef1-4b08ca66da92","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"1975e925-ef5e-405d-b0db-2cf43ac147ce","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
     "name": "Sprites",
     "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Sprite_Asteroid_Large",
+  "name": "Sprite_Debris",
   "tags": [],
   "resourceType": "GMSprite",
 }

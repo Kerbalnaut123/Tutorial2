@@ -25,6 +25,8 @@
     {"isDnD":true,"eventNum":39,"eventType":5,"collisionObjectId":null,"parent":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":true,"eventNum":38,"eventType":5,"collisionObjectId":null,"parent":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":true,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":true,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"Object_Asteroid","path":"objects/Object_Asteroid/Object_Asteroid.yy",},"parent":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":true,"eventNum":32,"eventType":9,"collisionObjectId":null,"parent":{"name":"Object_Ship","path":"objects/Object_Ship/Object_Ship.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
