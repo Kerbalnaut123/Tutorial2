@@ -2,8 +2,9 @@
 /// @DnDVersion : 1
 /// @DnDHash : 4CE79015
 /// @DnDArgument : "expr" "-0.01"
+/// @DnDArgument : "expr_relative" "1"
 /// @DnDArgument : "var" "image_alpha"
-image_alpha = -0.01;
+image_alpha += -0.01;
 
 /// @DnDAction : YoYo Games.Common.If_Variable
 /// @DnDVersion : 1
